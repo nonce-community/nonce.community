@@ -1,5 +1,5 @@
 ///
-/// Hyperbolic by Pixelarity
+/// Hyperspace by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,48 +7,133 @@
 /* Wrapper */
 
 	.wrapper {
-		$wrapper-pad: _size(wrapper-pad, default);
-
-		@include padding($wrapper-pad, 0);
 		position: relative;
 
 		> .inner {
-			margin: 0 auto;
-			width: 75rem;
-			max-width: calc(100% - #{$wrapper-pad});
+			@include padding(5em, 5em);
+			max-width: 100%;
+			width: _size(inner-width);
+
+			@include breakpoint('<=xlarge') {
+				@include padding(4em, 4em);
+			}
+
+			@include breakpoint('<=large') {
+				width: 100%;
+			}
+
+			@include breakpoint('<=small') {
+				@include padding(3em, 2em);
+			}
+		}
+
+		&.alt {
+			background-color: _palette(bg-alt);
 		}
 
 		&.style1 {
-			background-color: _palette(bg);
+			background-color: _palette(accent1);
+		}
+
+		&.style1-alt {
+			background-color: _palette(accent1-alt);
 		}
 
 		&.style2 {
-			@include color(invert);
-			@include gradient-background;
+			background-color: _palette(accent2);
+		}
 
-			&.alt {
-				@include curve-after;
-				@include curve-before;
+		&.style2-alt {
+			background-color: _palette(accent2-alt);
+		}
+
+		&.style3 {
+			background-color: _palette(accent3);
+		}
+
+		&.style3-alt {
+			background-color: _palette(accent3-alt);
+		}
+
+		&.fullscreen {
+			@include vendor('display', 'flex');
+			@include vendor('flex-direction', 'column');
+			@include vendor('justify-content', 'center');
+			min-height: 100vh;
+
+			body.is-ie & {
+				height: 100vh;
+			}
+
+			@include breakpoint('<=large') {
+				min-height: calc(100vh - 2.5em);
+
+				body.is-ie & {
+					height: calc(100vh - 2.5em);
+				}
+			}
+
+			@include breakpoint('<=small') {
+				padding: 2em 0;
+				min-height: 0;
+
+				body.is-ie & {
+					height: auto;
+				}
 			}
 		}
 
-		@include breakpoint('<=large') {
-			$wrapper-pad: _size(wrapper-pad, large);
-
-			@include padding($wrapper-pad, 0);
-
+		&.fade-up {
 			> .inner {
-				max-width: calc(100% - #{$wrapper-pad});
+				@include vendor('transform', 'translateY(0)');
+				@include vendor('transition', (
+					'opacity #{_duration(activation)} ease',
+					'transform #{_duration(activation)} ease'
+				));
+				opacity: 1.0;
+			}
+
+			&.inactive,
+			body.is-preload & {
+				> .inner {
+					opacity: 0;
+					@include vendor('transform', 'translateY(1em)');
+				}
 			}
 		}
 
-		@include breakpoint('<=small') {
-			$wrapper-pad: _size(wrapper-pad, small);
-
-			@include padding($wrapper-pad, 0);
-
+		&.fade-down {
 			> .inner {
-				max-width: calc(100% - #{$wrapper-pad});
+				@include vendor('transform', 'translateY(0)');
+				@include vendor('transition', (
+					'opacity #{_duration(activation)} ease',
+					'transform #{_duration(activation)} ease'
+				));
+				opacity: 1.0;
+			}
+
+			&.inactive,
+			body.is-preload & {
+				> .inner {
+					opacity: 0;
+					@include vendor('transform', 'translateY(-1em)');
+				}
+			}
+		}
+
+		&.fade {
+			> .inner {
+				@include vendor('transition', (
+					'opacity #{_duration(activation)} ease'
+				));
+				opacity: 1.0;
+			}
+
+			&.inactive,
+			body.is-preload & {
+				> .inner {
+					opacity: 0;
+				}
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 ///
-/// Hyperbolic by Pixelarity
+/// Hyperspace by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,127 +7,91 @@
 /* Features */
 
 	.features {
-		@include vendor('align-items', 'center');
 		@include vendor('display', 'flex');
+		@include vendor('flex-wrap', 'wrap');
+		border-radius: _size(border-radius);
+		border: solid 1px _palette(border);
+		background: _palette(border-bg);
 		margin: 0 0 _size(element-margin) 0;
 
-		> ul {
-			margin-bottom: 0;
-			padding-left: 0;
+		section {
+			@include padding(3em, 3em, (0.5em, 0, 0, 4em));
+			width: 50%;
+			border-top: solid 1px _palette(border);
+			position: relative;
 
-			> li {
-				list-style: none;
-				margin-top: 3rem;
+			&:nth-child(-n + 2) {
+				border-top-width: 0;
+			}
 
-				> :last-child {
-					margin-bottom: 0;
+			&:nth-child(2n) {
+				border-left: solid 1px _palette(border);
+			}
+
+			.icon {
+				@include vendor('transition', (
+					'opacity #{_duration(activation) * 0.5} ease',
+					'transform #{_duration(activation) * 0.5} ease'
+				));
+				@include vendor('transition-delay', '1s');
+				@include vendor('transform', 'scale(1)');
+				position: absolute;
+				left: 3em;
+				top: 3em;
+				opacity: 1;
+			}
+
+			@for $i from 1 through _misc(max-features) {
+				&:nth-child(#{$i}) {
+					.icon {
+						@include vendor('transition-delay', '#{(_duration(transition) * 0.75 * $i)}');
+					}
 				}
-
-				&:first-child {
-					margin-top: 0;
-				}
-			}
-
-			&:first-child {
-				margin-right: 4rem;
-				text-align: right;
-			}
-
-			&:last-child {
-				margin-left: 4rem;
-				text-align: left;
-			}
-
-			h3 {
-				font-size: 1.25rem;
-				margin: 0 0 (_size(element-margin) * 0.375) 0;
 			}
 		}
 
-		> .image {
-			@include vendor('flex-grow', '0');
-			@include vendor('flex-shrink', '0');
-
-			img {
-				border-radius: 100%;
-				box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.25);
-				display: block;
-				width: 30rem;
-			}
-		}
-
-		@include breakpoint('<=large') {
-			@include vendor('flex-wrap', 'wrap');
-			@include vendor('justify-content', 'center');
-
-			> .image {
-				@include vendor('order', '-1');
-				margin: 0 0 3rem 0;
-				width: 100%;
-
-				> img {
-					margin: 0 auto;
-					width: 20rem;
-				}
-			}
-
-			> ul {
-				@include vendor('flex-grow', '1');
-				@include vendor('flex-shrink', '1');
-				padding: 0 3rem;
-				width: 50%;
-
-				&:first-child {
-					margin-right: 0;
-					text-align: center;
-				}
-
-				&:last-child {
-					margin-left: 0;
-					text-align: center;
+		&.inactive {
+			section {
+				.icon {
+					@include vendor('transform', 'scale(0.5)');
+					opacity: 0;
 				}
 			}
 		}
 
 		@include breakpoint('<=medium') {
-			> .image {
-				img {
-					max-width: 100%;
-				}
-			}
+			display: block;
 
-			> ul {
-				padding: 0 1.5rem;
+			section {
+				border-top-width: 1px !important;
+				border-left-width: 0 !important;
+				width: 100%;
+
+				&:first-child {
+					border-top-width: 0 !important;
+				}
 			}
 		}
 
 		@include breakpoint('<=small') {
-			> .image {
-				img {
-					width: 15rem;
+			section {
+				@include padding(2em, 1.5em, (0.5em, 0, 0, 4em));
+
+				.icon {
+					left: 1.5em;
+					top: 2em;
 				}
 			}
 		}
 
 		@include breakpoint('<=xsmall') {
-			> ul {
-				padding: 0;
-				width: 100%;
+			section {
+				@include padding(2em, 1.5em, (0, 0, 0, 0));
 
-				> li {
-					margin-top: 2rem;
-
-					&:first-child {
-						margin-top: 2rem;
-					}
-				}
-
-				&:first-child {
-					> li {
-						&:first-child {
-							margin-top: 0;
-						}
-					}
+				.icon {
+					left: 0;
+					position: relative;
+					top: 0;
 				}
 			}
 		}

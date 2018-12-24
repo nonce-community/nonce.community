@@ -1,5 +1,5 @@
 ///
-/// Hyperbolic by Pixelarity
+/// Hyperspace by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,145 +7,125 @@
 /* Spotlights */
 
 	.spotlights {
-		margin: 0 0 _size(element-margin) 0;
-
-		section {
-			@include vendor('align-items', 'center');
+		> section {
 			@include vendor('display', 'flex');
-			margin-top: -3rem;
+			@include vendor('flex-direction', 'row');
+			min-height: 22.5em;
 
-			.image {
-				@include vendor('flex-grow', '0');
-				@include vendor('flex-shrink', '0');
-				border-radius: 100%;
-				box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.25);
-				margin: 0 6rem 0 0;
-				width: 30rem;
+			body.is-ie & {
+				min-height: 0;
+			}
+
+			> .image {
+				background-position: center center;
+				background-size: cover;
+				border-radius: 0;
+				display: block;
+				position: relative;
+				width: 25em;
 
 				img {
-					border-radius: 100%;
+					border-radius: 0;
 					display: block;
+				}
+
+				&:before {
+					@include vendor('transition', 'opacity #{_duration(activation)} ease');
+					background: transparentize(_palette(bg), 0.1);
+					content: '';
+					display: block;
+					height: 100%;
+					left: 0;
+					opacity: 0;
+					position: absolute;
+					top: 0;
 					width: 100%;
 				}
 			}
 
-			.content {
-				@include vendor('flex-grow', '1');
-				@include vendor('flex-shrink', '1');
+			> .content {
+				@include padding(4em, 5em);
+				@include vendor('display', 'flex');
+				@include vendor('flex-direction', 'column');
+				@include vendor('justify-content', 'center');
+				width: #{_size(inner-width) - 25em};
+				-ms-flex: 1;
 
-				header {
-					&.major {
-						h3 {
-							&:after {
-								margin-right: auto;
-							}
-						}
+				> .inner {
+					@include vendor('transform', 'translateX(0) translateY(0)');
+					@include vendor('transition', (
+						'opacity #{_duration(activation)} ease',
+						'transform #{_duration(activation)} ease'
+					));
+					opacity: 1;
+				}
+			}
+
+			&:nth-child(1) {
+			}
+
+			&:nth-child(2) {
+				background-color: rgba(0,0,0,0.05);
+			}
+
+			&:nth-child(3) {
+				background-color: rgba(0,0,0,0.1);
+			}
+
+			&.inactive,
+			body.is-preload & {
+				> .image {
+					&:before {
+						opacity: 1;
+					}
+				}
+
+				> .content {
+					> .inner {
+						@include vendor('transform', 'translateX(-1em)');
+						opacity: 0;
 					}
 				}
 			}
 
-			&:first-child {
-				margin-top: 0;
-			}
-
-			&:nth-child(2n) {
-				@include vendor('flex-direction', 'row-reverse');
-				text-align: right;
-
-				.image {
-					margin: 0 0 0 6rem;
-				}
-
-				.content {
-					header {
-						&.major {
-							h3 {
-								&:after {
-									margin-left: auto;
-									margin-right: 0;
-								}
-							}
-						}
-					}
+			@include breakpoint('<=xlarge') {
+				> .content {
+					@include padding(4em, 4em);
 				}
 			}
-		}
 
-		@include breakpoint('<=large') {
-			section {
-				margin-top: 3rem;
-
-				.image {
-					margin: 0 4rem 0 0;
-					width: 20rem;
-				}
-
-				&:nth-child(2n) {
-					.image {
-						margin: 0 0 0 4rem;
-					}
-				}
-			}
-		}
-
-		@include breakpoint('<=medium') {
-			section {
+			@include breakpoint('<=medium') {
 				display: block;
-				text-align: center;
 
-				.image {
-					margin: 0 0 3rem 0;
-					max-width: 100%;
+				> .image {
+					width: 100%;
+					height: 50vh;
 				}
 
-				.content {
-					header {
-						&.major {
-							h3 {
-								&:after {
-									margin-left: auto;
-									margin-right: auto;
-								}
-							}
-						}
-					}
+				> .content {
+					width: 100%;
 				}
 
-				&:nth-child(2n) {
-					text-align: center;
-
-					.image {
-						margin: 0 0 3rem 0;
-					}
-
-					.content {
-						header {
-							&.major {
-								h3 {
-									&:after {
-										margin-left: auto;
-										margin-right: auto;
-									}
-								}
-							}
+				&.inactive,
+				body.is-preload & {
+					> .content {
+						> .inner {
+							@include vendor('transform', 'translateY(1em)');
 						}
 					}
 				}
 			}
-		}
 
-		@include breakpoint('<=small') {
-			section {
-				.image {
-					width: 15rem;
-					margin: 0 0 2rem 0;
+			@include breakpoint('<=small') {
+				> .image {
+					height: 50vh;
+					min-height: 15em;
 				}
 
-				&:nth-child(2n) {
-					.image {
-						margin: 0 0 2rem 0;
-					}
+				> .content {
+					@include padding(3em, 2em);
 				}
 			}
 		}
 	}
+

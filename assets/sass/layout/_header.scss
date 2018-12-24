@@ -1,276 +1,92 @@
 ///
-/// Hyperbolic by Pixelarity
+/// Hyperspace by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
 
 /* Header */
 
-	@include keyframes('reveal-header') {
-		0% { top: -4em; opacity: 0; }
-		100% { top: 0; opacity: 1; }
-	}
-
-	body {
-		padding-top: _size(element-height);
-
-		@include breakpoint('<=small') {
-			padding-top: 3rem;
-		}
-	}
-
 	#header {
-		@include color-typography(invert);
-		@include gradient-background(90%, 90deg);
-		@include vendor('align-items', 'center');
 		@include vendor('display', 'flex');
-		@include vendor('justify-content', 'space-between');
-		box-shadow: 0 0.075rem 1rem 0 rgba(0,0,0,0.125);
-		height: _size(element-height);
-		left: 0;
-		line-height: _size(element-height);
-		padding: 0 1.5rem;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: _misc(z-index-base);
+		background-color: _palette(accent1);
+		cursor: default;
+		padding: 1.75em 2em;
 
-		.logo {
-			@include vendor('flex-grow', '1');
-			@include vendor('flex-shrink', '1');
+		> .title {
 			border: 0;
-			font-size: 0.9rem;
-			text-transform: uppercase;
-			white-space: nowrap;
+			color: _palette(fg-bold);
+			display: block;
+			font-size: 1.25em;
+			font-weight: _font(weight-bold);
 		}
 
-		&.reveal {
-			@include vendor('animation', 'reveal-header 0.5s ease');
-		}
+		> nav {
+			@include vendor('flex', '1');
+			text-align: right;
 
-		&.alt {
-			@include vendor('animation', 'none');
-			background: none;
-			box-shadow: none;
-			height: (_size(element-height) * 2);
-			line-height: (_size(element-height) * 2);
-			padding: 0 3rem;
-			position: absolute;
+			> ul {
+				margin: 0;
+				padding: 0;
 
-			&:before {
-				@include gradient-background(90%, 90deg);
-				content: '';
-				display: block;
-				height: 0.75rem;
-				left: 0;
-				position: absolute;
-				top: 0;
-				width: 100%;
-			}
+				> li {
+					display: inline-block;
+					margin-left: 1.75em;
+					padding: 0;
+					vertical-align: middle;
 
-		}
+					&:first-child {
+						margin-left: 0;
+					}
 
-		& + #banner {
-			margin-top: (_size(element-height) * -1);
-		}
+					a {
+						border: 0;
+						color: _palette(fg-light);
+						display: inline-block;
+						font-size: 0.6em;
+						font-weight: _font(weight-bold);
+						letter-spacing: _font(kerning-alt);
+						text-transform: uppercase;
 
-		> .navPanelToggle {
-			@include vendor('transition', (
-				'background-color #{_duration(transition)} ease-in-out',
-				'color #{_duration(transition)} ease-in-out',
-				'top #{_duration(transition)} ease-in-out',
-				'right #{_duration(transition)} ease-in-out'
-			));
-			@include icon;
-			border: 0;
-			display: none;
-			font-size: 0.9rem;
-			height: inherit;
-			line-height: inherit;
-			outline: 0;
-			padding: 0 1.5rem;
-			position: absolute;
-			right: 0;
-			text-transform: uppercase;
-			top: 0;
+						&:hover {
+							color: _palette(fg);
+						}
 
-			&:before {
-				content: '\f0c9';
-				float: right;
-				margin: 0 0 0 0.625rem;
-			}
-		}
-
-		@include breakpoint('<=large') {
-			&.alt {
-				height: (_size(element-height) * 1.5);
-				line-height: (_size(element-height) * 1.5);
-				padding: 0 1.5rem;
-			}
-		}
-
-		@include breakpoint('<=medium') {
-			> .navPanelToggle {
-				display: block;
-			}
-
-			&.alt {
-				> .navPanelToggle {
-					padding: 0 1.75rem;
-				}
-			}
-		}
-
-		@include breakpoint('<=small') {
-			height: 3rem;
-			line-height: 3rem;
-
-			& + #banner {
-				margin-top: -3rem;
-			}
-		}
-
-		@include breakpoint('<=xsmall') {
-			> .navPanelToggle {
-				overflow: hidden;
-				text-indent: 4rem;
-				white-space: nowrap;
-				width: 4rem;
-			}
-		}
-	}
-
-	#nav {
-		@include vendor('flex-grow', '0');
-		@include vendor('flex-shrink', '0');
-
-		> ul {
-			@include vendor('display', 'flex');
-			list-style: none;
-			margin: 0;
-			padding-left: 0;
-
-			> li {
-				margin-left: 0.75rem;
-				padding-left: 0;
-
-				&:first-child {
-					margin-left: 0;
-				}
-
-				> ul {
-					display: none;
-				}
-
-				a, span {
-					@include vendor('transition', (
-						'background-color #{_duration(transition)} ease-in-out',
-						'box-shadow #{_duration(transition)} ease-in-out',
-						'color #{_duration(transition)} ease-in-out'
-					));
-					border-radius: 2rem;
-					border: 0;
-					box-shadow: 0;
-					font-size: 0.9rem;
-					padding: 0.625rem 1.5rem;
-					text-transform: uppercase;
-					box-shadow: inset 0 0 0 1px rgba(0,0,0,0);
-
-					&.icon {
-						padding-left: 1.25rem;
-
-						&:before {
-							margin-right: 0.5rem;
+						&.active {
+							color: _palette(fg-bold);
 						}
 					}
 				}
-
-				&.current {
-					a, span {
-						background-color: _palette(invert, border-bg);
-					}
-				}
-
-				&.active {
-					a, span {
-						box-shadow: inset 0 0 0 1px opacify(_palette(invert, border-bg), 0.25);
-					}
-				}
 			}
 		}
 
-		@at-root {
-			.dropotron {
-				background-color: _palette(bg);
-				border-radius: _size(border-radius);
-				box-shadow: 0 0.075rem 0.75rem 0 rgba(0,0,0,0.125);
-				list-style-type: none;
-				margin: 0 0 0 1px;
-				min-width: 10rem;
-				padding: 0.5rem 0;
+		@include breakpoint('<=small') {
+			padding: 1em 2em;
+		}
 
-				&.level-0 {
-					margin-left: 1.5rem;
-					margin-top: 1rem;
+		@include breakpoint('<=xsmall') {
+			display: block;
+			padding: 0 2em;
+			text-align: left;
 
-					&:before {
-						@include vendor('transform', 'rotate(45deg)');
-						background-color: _palette(bg);
-						box-shadow: -2px -2px 3px -1px rgba(0,0,0,0.1);
-						content: '';
-						position: absolute;
-						top: -0.375rem;
-						left: 1rem;
-						width: 0.75rem;
-						height: 0.75rem;
-					}
-				}
+			.title {
+				font-size: 1.25em;
+				padding: 1em 0;
+			}
 
-				li {
-					border-top: solid 1px _palette(border);
-					padding: 0;
-					position: relative;
+			> nav {
+				border-top: solid 1px _palette(border);
+				text-align: inherit;
 
-					&:first-child {
-						border-top: none;
-					}
+				> ul {
+					> li {
+						margin-left: 1.5em;
 
-					&.active > a {
-						color: _palette(accent1);
-					}
-				}
-
-				a {
-					color: _palette(fg);
-					padding: 0.325rem 0.875rem;
-					text-decoration: none !important;
-					border: 0;
-					font-size: 0.9rem;
-
-					&:active, &:hover, &:focus {
-						color: _palette(accent1);
-					}
-				}
-
-				body.header-alt & {
-					&.level-0 {
-						margin-top: -1rem;
+						a {
+							height: 6em;
+							line-height: 6em;
+						}
 					}
 				}
 			}
-		}
-
-		@include breakpoint('<=large') {
-			> ul {
-				> li {
-					a, span {
-						padding: 0.5rem 1rem;
-					}
-				}
-			}
-		}
-
-		@include breakpoint('<=medium') {
-			display: none;
 		}
 	}
