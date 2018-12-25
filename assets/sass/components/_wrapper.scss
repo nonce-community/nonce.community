@@ -55,6 +55,14 @@
 			background-color: _palette(accent3-alt);
 		}
 
+		&.style4 {
+			background-color: _palette(accent4);
+		}
+
+		&.style4-alt {
+			background-color: _palette(accent4-alt);
+		}
+
 		&.fullscreen {
 			@include vendor('display', 'flex');
 			@include vendor('flex-direction', 'column');
@@ -75,7 +83,7 @@
 
 			@include breakpoint('<=small') {
 				padding: 2em 0;
-				min-height: 0;
+				min-height: 100vh;
 
 				body.is-ie & {
 					height: auto;
