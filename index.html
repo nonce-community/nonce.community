@@ -44,71 +44,82 @@
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1>nonce</h1>
+							<h1 class="logo">nonce</h1>
 							<h2>여러분의 꿈을 이룰 수 있는 공간, 논스에 입주하세요.</h2>
               <p></p>
 							<ul class="actions">
 								<li><a href="#five" class="scrolly">입주 신청하기</a></li>
 							</ul>
 						</div>
+            <div>
+            <a href="#one" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
+            </div>
 					</section>
-
+          <hr/>
 				<!-- Intro -->
-					<section id="one" class="wrapper style2 fullscreen fade-up">
+					<section id="one" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
               <h1><strong>논스는 타협하지 않고 세상을 바꾸어가려는 사람들을 위한 공간입니다</strong></h1>
 							<p>주변을 내 꿈을 응원해줄 수 있는 사람으로 가득 채워야 합니다. 논스에서는 아무리 불가능해보이는 꿈도 응원받을 수 있습니다</p>
 						</div>
+            <a href="#two" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
 					</section>
-
+          <hr/>
 				<!-- Intro -->
-					<section id="two" class="wrapper style3 fullscreen fade-up">
+					<section id="two" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1><strong>논스는 다양성을 존중하는 사람들을 위한 공간입니다</strong></h1>
 							<p>다양한 사람들과 서로의 삶을 공유하고 진정한 자기 자신을 찾을 수 있습니다</p>
 						</div>
+            <a href="#three" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
 					</section>
-
+          <hr/>
 				<!-- Intro -->
 					<section id="three" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1><strong>논스는 자신의 자원을 나눔으로써 더 크게 성장할 수 있다고 믿는 사람들을 위한 공간입니다</strong></h1>
               <!-- <p>다양한 사람들과 서로의 삶을 공유하고 </p> -->
 						</div>
+            <a href="#four" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
 					</section>
+          <hr/>
 
 				<!-- Intro -->
-					<section id="four" class="wrapper style2 fullscreen fade-up">
+					<section id="four" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1><strong>논스는 실력을 갖춘 블록체인 전문가들이 가장 많이 모여 있는 곳입니다</strong></h1>
 							<!-- <p>다양한 사람들과 서로의 삶을 공유하고 </p> -->
 						</div>
+            <a href="#five" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
 					</section>
+          <hr/>
 
 				<!-- Four -->
-					<section id="five" class="wrapper style3 fade-up">
+					<section id="five" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
               <h1><strong>지금 바로 논스에 입주하세요</strong></h1>
 							<div class="style1">
 								<section>
-									<form method="post" action="#">
+									<form method="post" action="https://formspree.io/movein@nonce.community">
 										<div class="fields">
 											<div class="field half">
-												<input type="text" name="name" id="name" placeholder="이름"/>
+												<input type="text" name="name" id="name" placeholder="이름" required/>
 											</div>
 											<div class="field half">
-												<input type="text" name="phone" id="phone" placeholder="전화번호"/>
+												<input type="text" name="phone" id="phone" placeholder="전화번호" required/>
 											</div>
 											<div class="field">
-												<input type="text" name="email" id="email" placeholder="이메일 주소"/>
+												<input type="text" name="email" id="email" placeholder="이메일 주소" required/>
 											</div>
 											<div class="field">
 												<textarea name="message" id="message" placeholder="메세지" rows="5"></textarea>
 											</div>
 										</div>
 										<ul class="actions">
-											<li><a href="" style="font-family: Noto Sans KR" class="button submit">공간 정보받기(PDF)</a></li>
-											<li><a href="" class="button">입주 신청하기</a></li>
+											<li>
+												<input type="submit" value="입주 신청하기"/>
+                      </li>
+											<li><a href="https://s3.ap-northeast-2.amazonaws.com/nonce-public/move-in-guidelines/move-in-guideline-181225.pdf" target="_blank" style="font-family: Noto Sans KR" class="button">공간 정보받기(PDF)</a></li>
 										</ul>
 									</form>
 								</section>
@@ -119,7 +130,7 @@
 			</div>
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper style3-alt">
+			<footer id="footer" class="wrapper style2-alt">
 				<div class="inner">
 					<ul class="menu">
 						<li>&copy; Untitled. All rights reserved.</li>
